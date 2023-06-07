@@ -1,0 +1,14 @@
+15:18:29,569 (AWT-EventQueue-0) INFO  [edu.uniandes.business.AlohandesB] - START ⟼ Consulta01
+15:18:29,850 (AWT-EventQueue-0) INFO  [edu.uniandes.business.AlohandesB] - END ⟼ Consulta01
+16:31:25,156 (AWT-EventQueue-0) ERROR [edu.uniandes.view.AlohandesV] - Usuario ha cancelado la operacion
+16:31:29,681 (AWT-EventQueue-0) INFO  [edu.uniandes.business.AlohandesB] - START ⟼ Consulta01
+16:31:29,931 (AWT-EventQueue-0) INFO  [edu.uniandes.business.AlohandesB] - END ⟼ Consulta01
+13:08:03,712 (AWT-EventQueue-0) ERROR [edu.uniandes.view.AlohandesV] - Usuario ha cancelado la operacion
+13:08:08,886 (AWT-EventQueue-0) INFO  [edu.uniandes.business.AlohandesB] - START ⟼ Consulta01
+13:08:09,130 (AWT-EventQueue-0) INFO  [edu.uniandes.business.AlohandesB] - END ⟼ Consulta01
+13:08:12,228 (AWT-EventQueue-0) INFO  [edu.uniandes.business.AlohandesB] - START ⟼ Consulta02
+13:08:12,246 (AWT-EventQueue-0) INFO  [edu.uniandes.business.AlohandesB] - END ⟼ Consulta02
+13:08:15,978 (AWT-EventQueue-0) INFO  [edu.uniandes.business.AlohandesB] - START ⟼ Consulta03
+13:08:15,995 (AWT-EventQueue-0) INFO  [edu.uniandes.business.AlohandesB] - END ⟼ Consulta03
+13:08:29,926 (AWT-EventQueue-0) INFO  [edu.uniandes.business.AlohandesB] - START ⟼ Consulta04
+13:08:29,956 (AWT-EventQueue-0) ERROR [edu.uniandes.view.AlohandesV] - Error con la ejecucion de Query de SQL "SELECT oser.*  FROM operator op           JOIN operator_service oser ON op.name = oser.name           LEFT JOIN host_offer b ON op.name = b.name  WHERE b."start" > ?    AND b."end" < ?   AND".

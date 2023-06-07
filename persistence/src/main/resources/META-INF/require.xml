@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<!--suppress SqlNoDataSourceInspection, SqlResolve -->
+<properties>
+<!--Iteracion 2 -->
+<entry key="moneyByYear">
+<![CDATA[
+SELECT o.name AS operator_name, SUM(b.cost) AS total_money
+FROM operator o
+         JOIN host_offer b ON o.name = b.name
+WHERE b."start" >= ADD_MONTHS(TRUNC(SYSDATE, 'YEAR'), -12)
+GROUP BY o.name
+]]></entry>
+<entry key="popularOffers">
+<![CDATA[
+SELECT name, COUNT(*) AS num_host_offers
+FROM host_offer
+GROUP BY name
+ORDER BY num_host_offers DESC FETCH FIRST 20 ROWS ONLY
+]]></entry>
+<entry key="occupationIndex"><![CDATA[
+SELECT o.name  AS operator_name,
+       CASE
+           WHEN os.capacity = 0 THEN 0
+           ELSE ROUND((COUNT(ho.id) * 100.0) / os.capacity, 2)
+           END AS occupation_index
+FROM operator o
+         JOIN operator_spec os ON o.name = os.name
+         LEFT JOIN host_offer ho ON o.name = ho.name
+WHERE ho.is_taken = 1
+GROUP BY o.name, os.capacity
+]]></entry>
+<entry key="availableInRangeAndServices"><![CDATA[
+SELECT oser.*
+FROM operator op
+         JOIN operator_service oser ON op.name = oser.name
+         LEFT JOIN host_offer b ON op.name = b.name
+WHERE b."start" > ?
+  AND b."end" < ?
+]]></entry>
+<entry key="alohandesUse"><![CDATA[
+SELECT o.nuip, 'operator' AS role, b.id, b."start", b."end", ROUND(b."end" - b."start") AS days_spent
+FROM host_offer b
+         LEFT JOIN operator o ON b.name = o.name
+UNION
+SELECT c.nuip, 'client' AS role, b.id, b."start", b."end", ROUND(b."end" - b."start") AS days_spent
+FROM host_offer b
+         LEFT JOIN client c ON b.nuip = c.nuip
+]]></entry>
+<entry key="alohandesUseTotal"><![CDATA[
+SELECT 'operator' AS role, b.id, b."start", b."end", ROUND(b."end" - b."start") AS days_spent
+FROM host_offer b
+         LEFT JOIN operator o ON b.name = o.name
+WHERE o.nuip = ?
+UNION
+SELECT 'client' AS role, b.id, b."start", b."end", ROUND(b."end" - b."start") AS days_spent
+FROM host_offer b
+         LEFT JOIN client c ON b.nuip = c.nuip
+WHERE c.nuip = ?
+]]></entry>
+<!--Iteracion 3 -->
+<entry key="alohandesOperation"><![CDATA[
+SELECT o.name            AS operator_name,
+       MIN(r.revenue)    AS min_revenue,
+       MAX(r.revenue)    AS max_revenue,
+       MIN(r.occupancy)  AS min_occupancy,
+       MAX(r.occupancy)  AS max_occupancy,
+       MIN(r.start_date) AS start_date
+FROM operator o
+         JOIN (SELECT ho.nuip,
+                      ho.name,
+                      SUM(ho.cost * (ho."end" - ho."start")) AS revenue,
+                      COUNT(DISTINCT ho.id)                  AS occupancy,
+                      MIN(ho."start")                        AS start_date
+               FROM host_offer ho
+               GROUP BY ho.nuip, ho.name, TRUNC(ho."start", ?)) r ON o.name = r.name
+WHERE o.type = ?
+GROUP BY o.name, TRUNC(r.start_date, ?)
+]]></entry>
+<entry key="frequentClients"><![CDATA[
+SELECT c.nuip, c.name AS client_name, COUNT(*) AS reservations
+FROM host_offer o
+         INNER JOIN client c ON o.nuip = c.nuip
+WHERE o.name = ?
+GROUP BY c.nuip, c.name
+HAVING COUNT(DISTINCT o.id) >= 3
+    OR MAX(o."end" - o."start") > 15
+]]></entry>
+<entry key="lowDemand"><![CDATA[
+SELECT *
+FROM host_offer ho
+WHERE ho."end" < ADD_MONTHS(SYSDATE, -1)
+  AND NOT EXISTS(
+        SELECT 1
+        FROM host_offer ho2
+        WHERE ho2.name = ho.name
+          AND ho2."start" < ADD_MONTHS(SYSDATE, -1)
+          AND ho2."end" > ADD_MONTHS(SYSDATE, -1)
+    )
+]]></entry>
+</properties>

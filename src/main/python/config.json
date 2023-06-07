@@ -1,0 +1,5 @@
+{
+  "user": "ISIS2304B20202310",
+  "password": "JjFqFGZSwHXJ",
+  "connectString": "jdbc:oracle:thin:@fn4.oracle.virtual.uniandes.edu.co:1521/prod"
+}

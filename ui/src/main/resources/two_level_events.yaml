@@ -1,0 +1,67 @@
+# Estructura
+# Label de primer nivel
+#   Label de segundo nivel: nombre del evento
+Operator:
+  Create: createOperator
+  Select All: retrieveAllOperator
+Host Offer:
+  Create: createBooking
+  Select All: retrieveAllBooking
+  Select One: retrieveOneBooking
+  Delete: deleteBooking
+Client:
+  Create: createClient
+  Select All: retrieveAllClient
+  Select One: retrieveOneClient
+  Delete: deleteClient
+Hotel:
+  Create: createHotel
+  Select All: retrieveAllHotel
+  Select One: retrieveOneHotel
+  Delete: deleteHotel
+Group Reservation:
+  Create: createGroupReservation
+  Select All: retrieveAllGroupReservation
+  Select One: retrieveOneGroupReservation
+  Delete: deleteGroupReservation
+Service Scheme:
+  Create: createServices
+  Select All: retrieveAllServiceScheme
+Apartment Specification:
+  Select All: retrieveAllApartmentSpec
+  Select One: retrieveOneApartmentSpec
+  Delete: deleteApartmentSpec
+Client Preference:
+  Select All: retrieveAllClientPreference
+Hostel Specification:
+  Select All: retrieveAllHostelSpec
+  Select One: retrieveOneHostelSpec
+  Delete: deleteHostelSpec
+Hotel Room Specification:
+  Select All: retrieveAllHotelRoomSpec
+  Select One: retrieveOneHotelRoomSpec
+  Delete: deleteHotelRoomSpec
+House Room Specification:
+  Select All: retrieveAllHouseRoomSpec
+  Select One: retrieveOneHouseRoomSpec
+  Delete: deleteHouseRoomSpec
+Operator Service:
+  Select All: retrieveAllOperatorService
+Operator Specification:
+  Select All: retrieveAllOperatorSpec
+Residence Specification:
+  Select All: retrieveAllResidenceSpec
+  Select One: retrieveOneResidenceSpec
+  Delete: deleteResidenceSpec
+Rooms Hotel:
+  Select All: retrieveAllRoomsHotel
+  Select One: retrieveOneRoomsHotel
+  Delete: deleteRoomsHotel
+Student Residence Specification:
+  Select All: retrieveAllStudentResSpec
+  Select One: retrieveOneStudentResSpec
+  Delete: deleteStudentResSpec
+Acerca De:
+  Clean Alohandes.log: cleanAlohandesLog
+  Clean Datanucleus.log: cleanDatanucleusLog
+  Credits: about

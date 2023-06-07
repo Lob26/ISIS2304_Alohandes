@@ -1,0 +1,24 @@
+# Estructura
+# Tipo de evento (Funcional, Consulta)
+#   Label del evento: nombre del evento
+Funcional:
+  Registrar operadores: req01
+  Registrar propuesta de alohamiento: req02
+  Registrar clientes: req03
+  Registrar reserva: req04
+  Cancelar reserva: req05
+  Retirar oferta: req06
+  Registrar reserva conjunta: req07
+  Cancelar reserva conjunta: req08
+  req9: req09
+  req10: req10
+Consulta:
+  Dinero recibido por cada operador el anio actual: reqC01
+  20 ofertas mas populares: reqC02
+  Indice de ocupacion de cada oferta: reqC03
+  Alojamientos disponibles en rango de fecha con servicios: reqC04
+  Uso de la aplicacion por la comunidad: reqC05
+  Uso de la aplicacion por un usuario: reqC06
+  Operacion de Alohandes: reqC07
+  Clientes frecuentes: reqC08
+  De baja demanda: reqC09
